@@ -273,7 +273,6 @@ namespace ClubeDaLeitura.ConsoleApp
                                     }
                             }
 
-
                             break;
                         }
 
