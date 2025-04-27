@@ -33,9 +33,11 @@
             string corCaixa = Console.ReadLine();
 
             Console.Write("Dias em que a caixa será emprestada (padrão: 7 dias): ");
-            int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());
+            int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());            
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
+            novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
+
             caixas[contadorCaixa++] = novaCaixa;
         }
 

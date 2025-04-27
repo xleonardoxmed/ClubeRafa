@@ -37,6 +37,7 @@
             int telefone = Convert.ToInt32(Console.ReadLine());
 
             Cliente novoCliente = new Cliente(nomeCliente, nomeResponsavel, telefone);
+            novoCliente.Id = GeradorIds.GerarIdCliente();
 
             clientes[contadorClientes++] = novoCliente;
         }

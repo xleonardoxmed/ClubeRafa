@@ -99,8 +99,7 @@ namespace ClubeDaLeitura.ConsoleApp
 
                     default:
                         {
-                            Console.WriteLine("Saindo do programa...");
-                            break;
+                            Console.WriteLine("Saindo do programa..."); break;
                         }                        
                 }
                 Console.ReadLine();

@@ -39,6 +39,8 @@
             string caixaPertencente = Console.ReadLine();
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
+            novaRevista.IdRevista = GeradorIds.GerarIdRevista;
+
             revistas[contadorRevista++] = novaRevista;
         }
 

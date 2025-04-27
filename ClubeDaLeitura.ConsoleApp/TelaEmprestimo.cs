@@ -27,6 +27,15 @@
             Console.WriteLine("Registrando empréstimo...");
             Console.WriteLine("-------------------------");
             Console.WriteLine();
+
+            Console.Write("Digite o ID do cliente: ");
+            int idCliente = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+
+            Console.Write("Digite o ID da revista/caixa desejada: ");
+            int idCaixaRevista = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+
             
         }
 
@@ -43,7 +52,15 @@
             Console.WriteLine("---------------------------");
             Console.WriteLine("Visualizando empréstimos...");
             Console.WriteLine("---------------------------");
-            Console.WriteLine();            
+            Console.WriteLine();
+
+            Console.Write("Digite o ID do cliente: ");
+            int idCliente = Convert.ToInt32(Console.ReadLine());
+
+            if (idCliente == Cliente.Id)
+            {
+
+            }
         }
 
     }
