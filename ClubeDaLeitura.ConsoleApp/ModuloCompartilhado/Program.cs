@@ -10,7 +10,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
     {
         static void Main(string[] args)
         {
-            TelaCliente telaCliente = new TelaCliente();
+            TelaCliente telaCliente = new TelaCliente(telaCaixa);
             TelaCaixa telaCaixa = new TelaCaixa();
             TelaRevista telaRevista = new TelaRevista();
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo();

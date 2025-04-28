@@ -1,9 +1,13 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
+using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+using System;
 
 namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
 {
     public class TelaRevista
     {
+        public TelaCaixa TelaCaixa;
+
         public Revista[] revistas = new Revista[100];
         public int contadorRevista = 0;
         public string ApresentarMenuRevista()
@@ -29,7 +33,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
             Console.WriteLine();
 
             Console.Write("Digite o título da revista: ");
-            string tituloRevista = Console.ReadLine();
+            string tituloRevista = Console.ReadLine()!.Trim();
 
             Console.Write("Digite o número da edição da revista: ");
             int numeroRevista = Convert.ToInt32(Console.ReadLine());
@@ -38,10 +42,10 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
             int anoPublicacao = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Informe a caixa que ela pertence");
-            string caixaPertencente = Console.ReadLine();
+            string caixaPertencente = Console.ReadLine()!.Trim();
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
-            novaRevista.IdRevista = GeradorIds.GerarIdRevista;
+            novaRevista.IdRevista = GeradorIds.GerarIdRevista();
 
             revistas[contadorRevista++] = novaRevista;
         }
@@ -59,7 +63,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Digite o título da revista: ");
-            string tituloRevista = Console.ReadLine();
+            string tituloRevista = Console.ReadLine()!.Trim();
 
             Console.Write("Digite o número da edição da revista: ");
             int numeroRevista = Convert.ToInt32(Console.ReadLine());
@@ -68,7 +72,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
             int anoPublicacao = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Informe a caixa que ela pertence");
-            string caixaPertencente = Console.ReadLine();
+            string caixaPertencente = Console.ReadLine()!.Trim();
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
 

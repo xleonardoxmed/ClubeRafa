@@ -1,4 +1,5 @@
 ﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+using System;
 
 namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
 {
@@ -58,10 +59,10 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
             Console.WriteLine();
 
             Console.Write("Digite o texto da etiqueta da caixa: ");
-            string etiquetaCaixa = Console.ReadLine();
+            string etiquetaCaixa = Console.ReadLine()!.Trim();
 
             Console.Write("Selecione a cor da caixa: ");
-            string corCaixa = Console.ReadLine();
+            string corCaixa = Console.ReadLine()!.Trim();
 
             Console.Write("Dias em que a caixa será emprestada (padrão: 7 dias): ");
             int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());

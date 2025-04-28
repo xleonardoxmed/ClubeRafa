@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
+using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
 
 namespace ClubeDaLeitura.ConsoleApp.RepositorioCliente
 {
@@ -6,6 +7,13 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCliente
     {
         public Cliente[] clientes = new Cliente[100];
         public int contadorClientes = 0;
+        public TelaCaixa telaCaixa;
+
+        public TelaCliente(TelaCaixa telaCaixa)
+        {
+            this.telaCaixa = telaCaixa;
+        }
+
         public string ApresentarMenuCliente()
         {
             Console.WriteLine("------------------");
