@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLeitura.ConsoleApp
+﻿namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
 {
   public  class Caixa
     {

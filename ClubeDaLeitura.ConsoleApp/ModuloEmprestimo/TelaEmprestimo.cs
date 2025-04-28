@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLeitura.ConsoleApp
+﻿namespace ClubeDaLeitura.ConsoleApp.RepositorioEmprestimo
 {
     class TelaEmprestimo
     {
@@ -35,7 +35,6 @@
             Console.Write("Digite o ID da revista/caixa desejada: ");
             int idCaixaRevista = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
-
             
         }
 
@@ -44,7 +43,11 @@
             Console.WriteLine("-------------------------");
             Console.WriteLine("Registrando devolução...");
             Console.WriteLine("-------------------------");
-            Console.WriteLine();            
+            Console.WriteLine();
+
+            Console.Write("Digite o ID do cliente: ");
+            int idCliente = Convert.ToInt32(Console.ReadLine());
+
         }
 
         public void VisualizarEmprestimo()
@@ -57,10 +60,6 @@
             Console.Write("Digite o ID do cliente: ");
             int idCliente = Convert.ToInt32(Console.ReadLine());
 
-            if (idCliente == Cliente.Id)
-            {
-
-            }
         }
 
     }

@@ -1,6 +1,10 @@
-﻿using System.Collections.Concurrent;
+﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
+using ClubeDaLeitura.ConsoleApp.RepositorioCliente;
+using ClubeDaLeitura.ConsoleApp.RepositorioEmprestimo;
+using ClubeDaLeitura.ConsoleApp.RepositorioRevista;
+using System.Collections.Concurrent;
 
-namespace ClubeDaLeitura.ConsoleApp
+namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
 {
     internal class Program
     {

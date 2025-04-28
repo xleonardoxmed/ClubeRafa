@@ -1,4 +1,6 @@
-﻿namespace ClubeDaLeitura.ConsoleApp
+﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+
+namespace ClubeDaLeitura.ConsoleApp.RepositorioCliente
 {
    public class TelaCliente
     {
