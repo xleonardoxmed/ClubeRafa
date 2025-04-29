@@ -1,5 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
-using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {

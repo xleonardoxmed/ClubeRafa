@@ -4,7 +4,7 @@ using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using System.Collections.Concurrent;
 
-namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
+namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
 {
     internal class Program
     {

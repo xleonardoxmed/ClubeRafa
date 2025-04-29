@@ -1,4 +1,4 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 using System;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
@@ -44,7 +44,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             string corCaixa = Console.ReadLine();
 
             Console.Write("Dias em que a caixa será emprestada (padrão: 7 dias): ");
-            int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());            
+            int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
             novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
@@ -81,15 +81,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             bool conseguiuEditar = repositorioCaixa.EditarCaixa(idSelecionado, novaCaixa);
 
 
-                if (!conseguiuEditar)
-                {
-                    Console.WriteLine("Houve um erro durante a edição das informações da caixa...");
-                    return;
-                }
-
-                Console.WriteLine("As informações da caixa foram editadas com sucesso!");
+            if (!conseguiuEditar)
+            {
+                Console.WriteLine("Houve um erro durante a edição das informações da caixa...");
+                return;
             }
-        }
+
+            Console.WriteLine("As informações da caixa foram editadas com sucesso!");
+        }        
+
 
         public void ExcluirCaixa()
         {
@@ -108,12 +108,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
             bool conseguiuExcluir = repositorioCaixa.ExcluirCaixa(idSelecionado);
 
-                if (!conseguiuExcluir)
-                {
-                    Console.WriteLine("Houve um erro durante a exclusão da caixa...");
-                }
+            if (!conseguiuExcluir)
+            {
+                Console.WriteLine("Houve um erro durante a exclusão da caixa...");
+            }
 
-                Console.WriteLine("A caixa foi devidamente excluída do sistema!");
+            Console.WriteLine("A caixa foi devidamente excluída do sistema!");
         }
 
         public void VisualizarCaixa(bool exibirMenu)

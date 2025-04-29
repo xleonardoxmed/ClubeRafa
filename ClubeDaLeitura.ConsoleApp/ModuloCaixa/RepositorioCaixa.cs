@@ -1,5 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
-using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
                     caixas[i].DiasEmprestimoCaixa = caixaEditada.DiasEmprestimoCaixa;
 
                     return true;
-                }
+                }                
             }
         }
 

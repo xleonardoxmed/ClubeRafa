@@ -1,5 +1,5 @@
 ﻿
-namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
+namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
 {
     public class TelaPrincipal
     {

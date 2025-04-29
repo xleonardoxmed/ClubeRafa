@@ -1,4 +1,4 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioRevista;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
