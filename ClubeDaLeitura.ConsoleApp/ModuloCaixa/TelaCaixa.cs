@@ -1,12 +1,17 @@
 ﻿using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
 using System;
 
-namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
+namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
+
 {
     public class TelaCaixa
     {
-        public Caixa[] caixas = new Caixa[100];
-        public int contadorCaixa = 0;
+        public RepositorioCaixa repositorioCaixa;
+        public TelaCaixa()
+        {
+            repositorioCaixa = new RepositorioCaixa();
+        }
+
         public string ApresentarMenuCaixa()
         {
             Console.WriteLine("------------------");
@@ -15,6 +20,8 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
             Console.WriteLine();
             Console.WriteLine("Escolha a operação desejada: ");
             Console.WriteLine("1 - Cadastrar nova caixa: ");
+            Console.WriteLine("2 - Editar uma caixa já registrada: ");
+            Console.WriteLine("3 - Excluir caixa: ");
             Console.WriteLine("4 - Visualizar caixa: ");
 
             string menuCaixa = Console.ReadLine();
@@ -24,6 +31,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
 
         public void CadastrarCaixa()
         {
+            Console.Clear();
             Console.WriteLine("----------------------");
             Console.WriteLine("Cadastrando caixa...");
             Console.WriteLine("----------------------");
@@ -41,11 +49,12 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
             novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
 
-            caixas[contadorCaixa++] = novaCaixa;
+            repositorioCaixa.CadastrarCaixa(novaCaixa);
         }
 
         public void EditarCaixa()
         {
+            Console.Clear();
             Console.WriteLine("----------------------");
             Console.WriteLine("Editando Caixa...");
             Console.WriteLine("----------------------");
@@ -69,20 +78,8 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
 
-            bool conseguiuEditar = false;
+            bool conseguiuEditar = repositorioCaixa.EditarCaixa(idSelecionado, novaCaixa);
 
-            for (int i = 0; i < caixas.Length; i++)
-            {
-                if (caixas[i] == null) continue;
-
-                else if (caixas[i].IdCaixa == idSelecionado)
-                {
-                    caixas[i].EtiquetaCaixa = novaCaixa.EtiquetaCaixa;
-                    caixas[i].CorCaixa = novaCaixa.CorCaixa;
-                    caixas[i].DiasEmprestimoCaixa = novaCaixa.DiasEmprestimoCaixa;
-
-                    conseguiuEditar = true;
-                }
 
                 if (!conseguiuEditar)
                 {
@@ -109,18 +106,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
 
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            bool conseguiuExcluir = false;
-
-            for (int i = 0; i < caixas.Length; i++)
-            {
-                if (caixas[i] == null) continue;
-
-                else if (caixas[i].IdCaixa == idSelecionado)
-                {
-                    caixas[i] = null;
-
-                    conseguiuExcluir = true;
-                }
+            bool conseguiuExcluir = repositorioCaixa.ExcluirCaixa(idSelecionado);
 
                 if (!conseguiuExcluir)
                 {
@@ -128,8 +114,6 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
                 }
 
                 Console.WriteLine("A caixa foi devidamente excluída do sistema!");
-            }
-
         }
 
         public void VisualizarCaixa(bool exibirMenu)
@@ -145,9 +129,11 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCaixa
             Console.WriteLine("{0, - 8} | {1, -15} | {2, -10} | {3, -10}",
                                  "ID Caixa", "Etiqueta", "Cor", "Status");
 
-            for (int i = 0; i < caixas.Length; i++)
+            Caixa[] caixaCadastrda = repositorioCaixa.SelecionarCaixa();
+
+            for (int i = 0; i < caixaCadastrda.Length; i++)
             {
-                Caixa caixaSelecionada = caixas[i];
+                Caixa caixaSelecionada = caixaCadastrda[i];
 
                 if (caixaSelecionada == null) continue;
 
@@ -157,7 +143,6 @@ caixaSelecionada.IdCaixa, caixaSelecionada.EtiquetaCaixa, caixaSelecionada.CorCa
             }
 
         }
-
 
     }
 }

@@ -1,7 +1,7 @@
 ﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
 using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
 
-namespace ClubeDaLeitura.ConsoleApp.RepositorioCliente
+namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {
    public class TelaCliente
     {

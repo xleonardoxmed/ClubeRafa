@@ -1,8 +1,8 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
-using ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 using System;
 
-namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
+namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 {
     public class TelaRevista
     {
@@ -18,6 +18,8 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
             Console.WriteLine();
             Console.WriteLine("Escolha a operação desejada: ");
             Console.WriteLine("1 - Cadastrar nova revista: ");
+            Console.WriteLine("2 - Editar uma revista já cadastrada: ");
+            Console.WriteLine("3 - Excluir revista: ");
             Console.WriteLine("4 - Visualizar revistas: ");
 
             string menuRevista = Console.ReadLine();
@@ -27,6 +29,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
 
         public void CadastrarRevista()
         {
+            Console.Clear();
             Console.WriteLine("----------------------");
             Console.WriteLine("Cadastrando revista...");
             Console.WriteLine("----------------------");
@@ -52,6 +55,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioRevista
 
         public void EditarRevista()
         {
+            Console.Clear();
             Console.WriteLine("----------------------");
             Console.WriteLine("Editando Revistas...");
             Console.WriteLine("----------------------");

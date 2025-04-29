@@ -1,7 +1,7 @@
-﻿using ClubeDaLeitura.ConsoleApp.RepositorioCaixa;
-using ClubeDaLeitura.ConsoleApp.RepositorioCliente;
-using ClubeDaLeitura.ConsoleApp.RepositorioEmprestimo;
-using ClubeDaLeitura.ConsoleApp.RepositorioRevista;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloCliente;
+using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using System.Collections.Concurrent;
 
 namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
@@ -10,6 +10,8 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
     {
         static void Main(string[] args)
         {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+
             TelaCliente telaCliente = new TelaCliente(telaCaixa);
             TelaCaixa telaCaixa = new TelaCaixa();
             TelaRevista telaRevista = new TelaRevista();
@@ -18,22 +20,11 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
             while (true)
 
             {
-                Console.WriteLine("---------------------");
-                Console.WriteLine("CLUBE DA LEITURA");
-                Console.WriteLine("---------------------");
-                Console.WriteLine();
-
-                Console.WriteLine("Escolha a operação desejada: ");
-                Console.WriteLine("1 - Gestão de clientes: ");
-                Console.WriteLine("2 - Gestão de Caixas: ");
-                Console.WriteLine("3 - Gestão de Revistas: ");
-                Console.WriteLine("4 - Empréstimos e devoluções: ");
-
-                string opcaoEscolhida = Console.ReadLine();
+               char opcaoEscolhida = telaPrincipal.ApresentarMenuPrincipal();        
 
                 switch (opcaoEscolhida)
                 {
-                    case "1":
+                    case '1':
                     string menuCliente = telaCliente.ApresentarMenuCliente();                        
 
                         switch (menuCliente)
@@ -49,7 +40,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
                         }
                         break;
 
-                    case "2":
+                    case '2':
                         {
                             string menuCaixa = telaCaixa.ApresentarMenuCaixa();
 
@@ -67,7 +58,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
                         }
                         break;                        
 
-                    case "3":
+                    case '3':
                         {
                             string menuRevista = telaRevista.ApresentarMenuRevista();
 
@@ -85,7 +76,7 @@ namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
                             break;
                         }
 
-                    case "4":
+                    case '4':
                         {
                             string menuEmprestimo = telaEmprestimo.ApresentarMenuEmprestimo();
 

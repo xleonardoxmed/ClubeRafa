@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.RepositorioEmprestimo
+﻿namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     class TelaEmprestimo
     {

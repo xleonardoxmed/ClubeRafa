@@ -1,6 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.RepositorioRevista;
 
-namespace ClubeDaLeitura.ConsoleApp.RepositorioEmprestimo
+namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
   public  class Emprestimo
     {

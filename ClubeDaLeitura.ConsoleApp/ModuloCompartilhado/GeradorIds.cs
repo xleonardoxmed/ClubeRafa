@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.RepositorioCompartilhado
+﻿namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
 {
     public static class GeradorIds
     {
