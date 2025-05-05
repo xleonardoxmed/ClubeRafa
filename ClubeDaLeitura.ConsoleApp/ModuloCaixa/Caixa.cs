@@ -2,10 +2,10 @@
 {
   public  class Caixa
     {
-        public int IdCaixa;
-        public string EtiquetaCaixa;
-        public string CorCaixa;
-        public int DiasEmprestimoCaixa;
+        public int IdCaixa { get; set; }
+        public string EtiquetaCaixa { get; set; }
+        public string CorCaixa { get; set; }
+        public int DiasEmprestimoCaixa { get; set; }
 
 
         public Caixa(string etiquetaCaixa, string corCaixa, int diasEmprestimoCaixa)
