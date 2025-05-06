@@ -1,9 +1,25 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloCliente;
+using ClubeDaLeitura.ConsoleApp.ModuloRevista;
+
+namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     class TelaEmprestimo
     {
         public Emprestimo[] emprestimos = new Emprestimo[100];   //quando no caso de devolução, usar o contador negativo (--)
         public int contadorEmprestimo = 0;
+
+        public TelaEmprestimo(TelaCaixa telaCaixa, TelaCliente telaCliente, TelaRevista telaRevista)
+        {
+            TelaCaixa = telaCaixa;
+            TelaCliente = telaCliente;
+            TelaRevista = telaRevista;
+        }
+
+        public TelaCaixa TelaCaixa { get; }
+        public TelaCliente TelaCliente { get; }
+        public TelaRevista TelaRevista { get; }
+
         public string ApresentarMenuEmprestimo()
         {
             Console.WriteLine("----------------------------------");

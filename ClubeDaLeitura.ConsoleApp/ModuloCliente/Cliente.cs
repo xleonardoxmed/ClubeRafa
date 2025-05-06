@@ -1,4 +1,6 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
+﻿using System.Linq.Expressions;
+
+namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {
     public class Cliente
     {
@@ -20,6 +22,28 @@
         {
 
             return "";
+        }
+
+        public string Validar ()
+        {
+           string erros = null;
+
+            if (string.IsNullOrEmpty(NomeCliente))
+                erros += "O campo 'Nome' é obrigatório.\n";
+
+            if (NomeCliente.Length < 3)
+                erros += "Por favor, insira ao menos 3 caracteres.\n";
+
+            if (string.IsNullOrEmpty(NomeResponsavel))
+                erros += "O campo 'Nome do Responsável' é obrigatório.\n";
+
+            if (NomeResponsavel.Length < 3)
+                erros += "Por favor, insira ao menos 3 caracteres.\n";
+
+            if (Telefone == null)
+                erros += "O campo 'Contato' é obrigatório";
+
+            return erros;
         }
     }
 }

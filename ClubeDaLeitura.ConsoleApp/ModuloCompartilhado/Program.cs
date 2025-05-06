@@ -12,10 +12,10 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
         {
             TelaPrincipal telaPrincipal = new TelaPrincipal();
 
-            TelaCliente telaCliente = new TelaCliente(telaCaixa);
+            TelaCliente telaCliente = new TelaCliente(TelaEmprestimo);
             TelaCaixa telaCaixa = new TelaCaixa();
             TelaRevista telaRevista = new TelaRevista();
-            TelaEmprestimo telaEmprestimo = new TelaEmprestimo();
+            TelaEmprestimo telaEmprestimo = new TelaEmprestimo(telaCaixa, telaCliente, telaRevista);
 
             while (true)
 

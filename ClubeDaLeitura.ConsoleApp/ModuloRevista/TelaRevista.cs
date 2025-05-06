@@ -47,6 +47,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Informe a caixa que ela pertence");
             string caixaPertencente = Console.ReadLine()!.Trim();
 
+            VisualizarCaixas();
+
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
             novaRevista.IdRevista = GeradorIds.GerarIdRevista();
 
@@ -165,6 +167,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 revistaSelecionada.IdRevista, revistaSelecionada.TituloRevista, revistaSelecionada.NumeroRevista, revistaSelecionada.AnoPublicacao, revistaSelecionada.CaixaPertencente);
 
             }
+
+        }
+
+        public void VisualizarCaixas()
+        {
 
         }
 

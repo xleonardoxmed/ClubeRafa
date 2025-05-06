@@ -126,8 +126,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
                 Console.WriteLine();
             }
 
-            Console.WriteLine("{0, - 8} | {1, -15} | {2, -10} | {3, -10}",
-                                 "ID Caixa", "Etiqueta", "Cor", "Status");
+            Console.WriteLine("{0, - 8} | {1, -15} | {2, -10} | {3, -10} | {4, -20}",
+                                 "ID Caixa", "Etiqueta", "Cor", "Status", "Revistas da Caixa");
 
             Caixa[] caixaCadastrda = repositorioCaixa.SelecionarCaixa();
 
@@ -137,8 +137,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
                 if (caixaSelecionada == null) continue;
 
-                Console.WriteLine("{0, - 8} | {1, -15} | {2, -10} | {3, -10}",
-caixaSelecionada.IdCaixa, caixaSelecionada.EtiquetaCaixa, caixaSelecionada.CorCaixa, caixaSelecionada.DiasEmprestimoCaixa);
+                Console.WriteLine("{0, - 8} | {1, -15} | {2, -10} | {3, -10} | {4, -20}",
+caixaSelecionada.IdCaixa, caixaSelecionada.EtiquetaCaixa, caixaSelecionada.CorCaixa, caixaSelecionada.DiasEmprestimoCaixa, caixaSelecionada.ObterQuantidadeRevista());
 
             }
 
