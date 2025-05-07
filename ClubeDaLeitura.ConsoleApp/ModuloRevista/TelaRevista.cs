@@ -8,8 +8,6 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
     {
         public TelaCaixa TelaCaixa;
 
-        public Revista[] revistas = new Revista[100];
-        public int contadorRevista = 0;
         public string ApresentarMenuRevista()
         {
             Console.WriteLine("------------------");
@@ -53,6 +51,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             novaRevista.IdRevista = GeradorIds.GerarIdRevista();
 
             revistas[contadorRevista++] = novaRevista;
+
+            Notificador.ExibirMensagem("A revista foi cadastrada com sucesso!", ConsoleColor.Green);
         }
 
         public void EditarRevista()
@@ -100,11 +100,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
                 if (!conseguiuEditar)
                 {
-                    Console.WriteLine("Houve um erro durante a edição das informações da revista...");
+                    Notificador.ExibirMensagem("Houve um erro durante a edição das informações...", ConsoleColor.Red);
                     return;
                 };
 
-                Console.WriteLine("As informações da revista foram editadas com sucesso!");
+                Notificador.ExibirMensagem("A revista foi editada com sucesso!", ConsoleColor.Green);
             }
         }
 
@@ -136,10 +136,10 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
                 if (!conseguiuExcluir)
                 {
-                    Console.WriteLine("Houve um erro durante a exclusão da revista...");
+                    Notificador.ExibirMensagem("Houve um erro durante a exclusão da revista...", ConsoleColor.Red);
                 }
 
-                Console.WriteLine("A revista foi devidamente excluída do sistema.");
+                Notificador.ExibirMensagem("A revista foi devidamente excluída do sistema.", ConsoleColor.Green);
             }
 
         }

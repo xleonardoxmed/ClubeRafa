@@ -1,13 +1,19 @@
 ﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloCliente;
+using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     class TelaEmprestimo
     {
-        public Emprestimo[] emprestimos = new Emprestimo[100];   //quando no caso de devolução, usar o contador negativo (--)
-        public int contadorEmprestimo = 0;
+        public RepositorioEmprestimo repositorioEmprestimo;    
+        
+        public TelaEmprestimo()
+        {
+            repositorioEmprestimo = new RepositorioEmprestimo();
+        }
+        
 
         public TelaEmprestimo(TelaCaixa telaCaixa, TelaCliente telaCliente, TelaRevista telaRevista)
         {
@@ -16,9 +22,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             TelaRevista = telaRevista;
         }
 
-        public TelaCaixa TelaCaixa { get; }
-        public TelaCliente TelaCliente { get; }
-        public TelaRevista TelaRevista { get; }
+        public TelaCaixa TelaCaixa { get; set; }
+        public TelaCliente TelaCliente { get; set; }
+        public TelaRevista TelaRevista { get; set; }
 
         public string ApresentarMenuEmprestimo()
         {
@@ -51,6 +57,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.Write("Digite o ID da revista/caixa desejada: ");
             int idCaixaRevista = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
+
+            Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
             
         }
 

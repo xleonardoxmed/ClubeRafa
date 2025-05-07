@@ -50,6 +50,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
 
             repositorioCaixa.CadastrarCaixa(novaCaixa);
+
+            Notificador.ExibirMensagem("A caixa foi cadastrada com sucesso!", ConsoleColor.Green);
         }
 
         public void EditarCaixa()
@@ -83,11 +85,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
             if (!conseguiuEditar)
             {
-                Console.WriteLine("Houve um erro durante a edição das informações da caixa...");
+                Notificador.ExibirMensagem("Houve um erro durante a edição das informações da caixa...", ConsoleColor.Red);
                 return;
             }
 
-            Console.WriteLine("As informações da caixa foram editadas com sucesso!");
+            Notificador.ExibirMensagem("As informações da caixa foram editadas com sucesso!", ConsoleColor.Green);
         }        
 
 
@@ -110,10 +112,10 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
             if (!conseguiuExcluir)
             {
-                Console.WriteLine("Houve um erro durante a exclusão da caixa...");
+                Notificador.ExibirMensagem("Houve um erro durante a exclusão da caixa...", ConsoleColor.Red);
             }
 
-            Console.WriteLine("A caixa foi devidamente excluída do sistema!");
+            Notificador.ExibirMensagem("A caixa foi devidamente excluída do sistema!", ConsoleColor.Green);
         }
 
         public void VisualizarCaixa(bool exibirMenu)

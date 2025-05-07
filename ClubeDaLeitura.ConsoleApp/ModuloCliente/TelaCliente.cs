@@ -5,8 +5,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {
    public class TelaCliente
     {
-        public Cliente[] clientes = new Cliente[100];
-        public int contadorClientes = 0;
+        public RepositorioCliente repositorioCliente;
+
         public TelaCaixa telaCaixa;
 
         public TelaCliente(TelaCaixa telaCaixa)
@@ -50,6 +50,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
             novoCliente.Id = GeradorIds.GerarIdCliente();
 
             clientes[contadorClientes++] = novoCliente;
+
+            Notificador.ExibirMensagem("O cliente foi cadastrado com sucesso!", ConsoleColor.Green);
         }
         public void EditarCliente()
         {
@@ -92,11 +94,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
                 }
                 if (!conseguiuEditar)
                 {
-                    Console.WriteLine("Houve um erro durante a edição das informações do cliente...");
+                    Notificador.ExibirMensagem("Houve um erro durante a edição das informações do cliente...", ConsoleColor.Red);
                     return;
                 };
 
-                Console.WriteLine("As informações do cliente foram editadas com sucesso!");
+                Notificador.ExibirMensagem("As informações do cliente foram editadas com sucesso!", ConsoleColor.Green);
             }
         }
 
@@ -129,10 +131,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 
             if (!conseguiuExcluir)
             {
-                Console.WriteLine("Houve um erro durante a exclusão do cliente...");
+                Notificador.ExibirMensagem("Houve um erro durante a exclusão do cliente...", ConsoleColor.Red);
             }
             Console.WriteLine();
-            Console.WriteLine("O cliente foi devidamente excluído do sistema.");
+
+            Notificador.ExibirMensagem("O cliente foi devidamente excluído do sistema.", ConsoleColor.Green);
         }
 
         public void VisualizarCliente(bool exibirTitulo)
