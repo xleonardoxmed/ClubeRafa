@@ -1,5 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.ModuloCliente;
 using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {

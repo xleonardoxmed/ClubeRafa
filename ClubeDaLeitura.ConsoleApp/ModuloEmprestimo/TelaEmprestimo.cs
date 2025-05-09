@@ -7,11 +7,18 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
     class TelaEmprestimo
     {
-        public RepositorioEmprestimo repositorioEmprestimo;    
+        public RepositorioEmprestimo repositorioEmprestimo;
+        public RepositorioCaixa repositorioCaixa;
+        public RepositorioCliente repositorioCliente;
+        public RepositorioRevista repositorioRevista;
         
-        public TelaEmprestimo()
+        
+        public TelaEmprestimo(RepositorioEmprestimo repositorioEmprestimo,RepositorioCaixa repositorioCaixa, RepositorioCliente repositorioCliente, RepositorioRevista repositorioRevista)
         {
-            repositorioEmprestimo = new RepositorioEmprestimo();
+            this.repositorioEmprestimo = repositorioEmprestimo;
+            this.repositorioCaixa = repositorioCaixa;
+            this.repositorioCliente = repositorioCliente;
+            this.repositorioRevista = repositorioRevista;
         }
         
 
@@ -51,17 +58,24 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine();
 
             Console.Write("Digite o ID do cliente: ");
-            int idCliente = Convert.ToInt32(Console.ReadLine());
+            int idClienteSelecionado = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
             Console.Write("Digite o ID da revista/caixa desejada: ");
-            int idCaixaRevista = Convert.ToInt32(Console.ReadLine());
+            int idCaixaRevistaSelecionada = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
+
+            Cliente clienteSelecionado = RepositorioCliente.SelecionarClientePorId(idClienteSelecionado);
+            Caixa caixaSelecionada = RepositorioCaixa.SelecionarCaixaPorId(idCaixaRevistaSelecionada);
+            Revista revistaSelecionada = RepositorioRevista.SelecionarRevistaPorId(idCaixaRevistaSelecionada);
+
+
+            Emprestimo novoEmprestimo = new Emprestimo();
 
             Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
             
         }
-
+         
         public void RegistrarDevolucao()
         {
             Console.WriteLine("-------------------------");
@@ -81,8 +95,26 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine("---------------------------");
             Console.WriteLine();
 
-            Console.Write("Digite o ID do cliente: ");
-            int idCliente = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("{0, - 8} | {1, -12} | {2, -12} | {3, -10}",
+                              "ID", "Nome", "Responsável", "Contato");
+
+            Console.WriteLine();
+            Console.Write("Digite o ID do cliente que deseja visualizar: ");
+
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Cliente[] clientesCadastrados = RepositorioCliente.SelecionarClientes(idSelecionado);
+
+            for (int i = 0; i < clientesCadastrados.Length; i++)
+            {
+                Cliente clienteSelecionado = clientesCadastrados[i];
+
+                if (clienteSelecionado == null)
+                    continue;
+
+                Console.WriteLine("{0, - 8} | {1, -12} | {2, -12} | {3, -10}",
+                clienteSelecionado.Id, clienteSelecionado.NomeCliente, clienteSelecionado.NomeResponsavel, clienteSelecionado.Telefone);
+            }
 
         }
 

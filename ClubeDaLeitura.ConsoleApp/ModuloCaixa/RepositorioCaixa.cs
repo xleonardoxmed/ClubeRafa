@@ -1,5 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,22 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
         public Caixa[] SelecionarCaixa()
         {
             return caixas;
+        }
+
+        public Caixa SelecionarCaixaPorId(int idCaixaRevistaSelecionada)
+        {
+            for(int i = 0; i < caixas.Length; i++)
+            {
+                Caixa caixa = caixas[i];
+
+                if (caixa == null) 
+                    continue;
+
+                else if (caixa.IdCaixa == idCaixaRevistaSelecionada)
+                    return caixa;
+            }
+
+            return null;
         }
     }
 }
