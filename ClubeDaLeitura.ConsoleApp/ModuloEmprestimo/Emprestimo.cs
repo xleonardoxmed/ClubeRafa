@@ -1,22 +1,22 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloRevista;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCliente;
+using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
   public  class Emprestimo
     {
         public int Id;
-        public string ClienteSelecionado { get; set; }
+        public Cliente Cliente { get; set; }
         public Revista Revista { get; set; }
         public DateTime DataEmprestimo { get; private set; }
         public DateTime DataDevolucao { get; private set; }
 
 
-        public Emprestimo(string clienteSelecionado, string revista, DateTime dataEmprestimo)
+        public Emprestimo(Cliente cliente, Revista revista, DateTime dataEmprestimo)
         {            
-            ClienteSelecionado = clienteSelecionado;
+            Cliente = cliente;
             Revista = revista;
-            DataEmprestimo = DateTime.Today;
-            
+            DataEmprestimo = DateTime.Today;            
         }
 
         public int TempoCorridoEmprestimo()

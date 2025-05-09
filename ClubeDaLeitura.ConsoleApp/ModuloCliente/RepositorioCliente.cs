@@ -6,22 +6,61 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
     public class RepositorioCliente
     {
         public Cliente[] clientes = new Cliente[100];
-        public int contadorClientes = 0;  
+        public int contadorClientes = 0;
 
-    public void CadastrarCliente(Cliente novoCliente)
-    {
-        novoCliente.Id = GeradorIds.GerarIdCliente();
-        clientes[contadorClientes++] = novoCliente;
-    }
+        public void CadastrarCliente(Cliente novoCliente)
+        {            
+            novoCliente.Id = GeradorIds.GerarIdCliente();
+            clientes[contadorClientes++] = novoCliente;            
+        }
 
-    public Cliente[] SelecionarClientes(int idSelecionado)
-    {
+        public bool EditarCliente(int idSelecionado, Cliente clienteAtualizado)
+        {
+            bool conseguiuEditar = false;
+
+            for (int i = 0; i < clientes.Length; i++)
+            {
+                if (clientes[i] == null) continue;
+
+                else if (clientes[i].Id == idSelecionado)
+                {
+                    clientes[i].NomeCliente = clienteAtualizado.NomeCliente;
+                    clientes[i].NomeResponsavel = clienteAtualizado.NomeResponsavel;
+                    clientes[i].Telefone = clienteAtualizado.Telefone;
+
+                    conseguiuEditar = true;
+                }
+            }
+
+            return conseguiuEditar;
+        }
+
+        public bool ExcluirCliente(int idSelecionado)
+        {
+            bool conseguiuExcluir = false;
+
+            for (int i = 0; i < clientes.Length; i++)
+            {
+                if (clientes[i] == null) continue;
+
+                else if (clientes[i].Id == idSelecionado)
+                {
+                    clientes[i] = null;
+
+                    conseguiuExcluir = true;
+                }
+            }
+
+            return conseguiuExcluir;
+        }
+
+        public Cliente[] SelecionarClientes()
+        {
             return clientes;
-    }
+        }
 
-
-    public Cliente SelecionarClientePorId(int idClienteSelecionado)
-    {
+        public Cliente SelecionarClientePorId(int idClienteSelecionado)
+        {
             for (int i = 0; i < clientes.Length; i++)
             {
                 Cliente cliente = clientes[i];
@@ -34,7 +73,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
             }
 
             return null;
-    }
+        }
 
     }
 }

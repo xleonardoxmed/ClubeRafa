@@ -11,16 +11,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         public RepositorioCaixa repositorioCaixa;
         public RepositorioCliente repositorioCliente;
         public RepositorioRevista repositorioRevista;
-        
-        
-        public TelaEmprestimo(RepositorioEmprestimo repositorioEmprestimo,RepositorioCaixa repositorioCaixa, RepositorioCliente repositorioCliente, RepositorioRevista repositorioRevista)
+
+        public TelaEmprestimo(RepositorioEmprestimo repositorioEmprestimo, RepositorioCaixa repositorioCaixa, RepositorioCliente repositorioCliente, RepositorioRevista repositorioRevista)
         {
             this.repositorioEmprestimo = repositorioEmprestimo;
             this.repositorioCaixa = repositorioCaixa;
             this.repositorioCliente = repositorioCliente;
             this.repositorioRevista = repositorioRevista;
         }
-        
 
         public TelaEmprestimo(TelaCaixa telaCaixa, TelaCliente telaCliente, TelaRevista telaRevista)
         {
@@ -61,21 +59,20 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             int idClienteSelecionado = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
-            Console.Write("Digite o ID da revista/caixa desejada: ");
-            int idCaixaRevistaSelecionada = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Digite o ID da revista desejada: ");
+            int idRevistaSelecionada = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
-            Cliente clienteSelecionado = RepositorioCliente.SelecionarClientePorId(idClienteSelecionado);
-            Caixa caixaSelecionada = RepositorioCaixa.SelecionarCaixaPorId(idCaixaRevistaSelecionada);
-            Revista revistaSelecionada = RepositorioRevista.SelecionarRevistaPorId(idCaixaRevistaSelecionada);
+            Cliente clienteSelecionado = repositorioCliente.SelecionarClientePorId(idClienteSelecionado);
+            
+            Revista revistaSelecionada = repositorioRevista.SelecionarRevistaPorId(idRevistaSelecionada);
 
-
-            Emprestimo novoEmprestimo = new Emprestimo();
+            Emprestimo novoEmprestimo = new Emprestimo(clienteSelecionado, revistaSelecionada, DateTime.Now);
 
             Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
-            
+
         }
-         
+
         public void RegistrarDevolucao()
         {
             Console.WriteLine("-------------------------");

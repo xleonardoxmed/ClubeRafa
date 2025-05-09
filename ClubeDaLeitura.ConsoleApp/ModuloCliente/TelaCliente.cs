@@ -3,7 +3,7 @@ using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {
-   public class TelaCliente
+    public class TelaCliente
     {
         public RepositorioCliente repositorioCliente;
 
@@ -47,9 +47,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
             int telefone = Convert.ToInt32(Console.ReadLine());
 
             Cliente novoCliente = new Cliente(nomeCliente, nomeResponsavel, telefone);
-            novoCliente.Id = GeradorIds.GerarIdCliente();
 
-            clientes[contadorClientes++] = novoCliente;
+            repositorioCliente.CadastrarCliente(novoCliente);
 
             Notificador.ExibirMensagem("O cliente foi cadastrado com sucesso!", ConsoleColor.Green);
         }
@@ -78,28 +77,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 
             Cliente novoCliente = new Cliente(nomeCliente, nomeResponsavel, telefone);
 
-            bool conseguiuEditar = false;
+            bool conseguiuEditar = repositorioCliente.EditarCliente(idSelecionado, novoCliente);
 
-            for (int i = 0; i < clientes.Length; i++)
+            if (!conseguiuEditar)
             {
-                if (clientes[i] == null) continue;
+                Notificador.ExibirMensagem("Houve um erro durante a edição das informações do cliente...", ConsoleColor.Red);
+                return;
+            }            
 
-                else if (clientes[i].Id == idSelecionado)
-                {
-                    clientes[i].NomeCliente = novoCliente.NomeCliente;
-                    clientes[i].NomeResponsavel = novoCliente.NomeResponsavel;
-                    clientes[i].Telefone = novoCliente.Telefone;
-
-                    conseguiuEditar = true;
-                }
-                if (!conseguiuEditar)
-                {
-                    Notificador.ExibirMensagem("Houve um erro durante a edição das informações do cliente...", ConsoleColor.Red);
-                    return;
-                };
-
-                Notificador.ExibirMensagem("As informações do cliente foram editadas com sucesso!", ConsoleColor.Green);
-            }
+            Notificador.ExibirMensagem("As informações do cliente foram editadas com sucesso!", ConsoleColor.Green);        
         }
 
         public void ExcluirCliente()
@@ -115,19 +101,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
             Console.Write("Digite o ID do cliente que deseja excluir: ");
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            bool conseguiuExcluir = false;
-
-            for (int i = 0; i < clientes.Length; i++)
-            {
-                if (clientes[i] == null) continue;
-
-                else if (clientes[i].Id == idSelecionado)
-                {
-                    clientes[i] = null;
-
-                    conseguiuExcluir = true;
-                }
-            }
+            bool conseguiuExcluir = repositorioCliente.ExcluirCliente(idSelecionado);
 
             if (!conseguiuExcluir)
             {
@@ -149,10 +123,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
                 Console.WriteLine();
             }
             Console.WriteLine();
-            
+
             Console.WriteLine("{0, - 8} | {1, -12} | {2, -12} | {3, -10}",
                                "ID", "Nome", "Responsável", "Contato");
 
+            Cliente[] clientes = repositorioCliente.SelecionarClientes();
 
             for (int i = 0; i < clientes.Length; i++)
             {

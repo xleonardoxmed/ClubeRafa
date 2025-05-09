@@ -36,6 +36,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
                     return true;
                 }                
             }
+
+            return false;
         }
 
         public bool ExcluirCaixa(int idCaixa)
