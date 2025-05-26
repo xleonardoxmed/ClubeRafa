@@ -18,18 +18,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             this.repositorioCaixa = repositorioCaixa;
             this.repositorioCliente = repositorioCliente;
             this.repositorioRevista = repositorioRevista;
-        }
-
-        public TelaEmprestimo(TelaCaixa telaCaixa, TelaCliente telaCliente, TelaRevista telaRevista)
-        {
-            TelaCaixa = telaCaixa;
-            TelaCliente = telaCliente;
-            TelaRevista = telaRevista;
-        }
-
-        public TelaCaixa TelaCaixa { get; set; }
-        public TelaCliente TelaCliente { get; set; }
-        public TelaRevista TelaRevista { get; set; }
+        }    
 
         public string ApresentarMenuEmprestimo()
         {
