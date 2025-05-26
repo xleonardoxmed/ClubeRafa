@@ -100,7 +100,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            Cliente[] clientesCadastrados = RepositorioCliente.SelecionarClientes(idSelecionado);
+            Cliente[] clientesCadastrados = repositorioCliente.SelecionarClientes();
 
             for (int i = 0; i < clientesCadastrados.Length; i++)
             {

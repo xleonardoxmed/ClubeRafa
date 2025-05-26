@@ -8,6 +8,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
     {
         public TelaCaixa TelaCaixa;
 
+        public RepositorioRevista repositorioRevista;
+
         public string ApresentarMenuRevista()
         {
             Console.WriteLine("------------------");
@@ -50,7 +52,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
             novaRevista.IdRevista = GeradorIds.GerarIdRevista();
 
-            revistas[contadorRevista++] = novaRevista;
+            repositorioRevista.CadastrarRevista(novaRevista);
 
             Notificador.ExibirMensagem("A revista foi cadastrada com sucesso!", ConsoleColor.Green);
         }
@@ -82,21 +84,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
 
-            bool conseguiuEditar = false;
-
-            for (int i = 0; i < revistas.Length; i++)
-            {
-                if (revistas[i] == null) continue;
-
-                else if (revistas[i].idRevista == idSelecionado)
-                {
-                    revistas[i].TituloRevista = novaRevista.TituloRevista;
-                    revistas[i].NumeroRevista = novaRevista.NumeroRevista;
-                    revistas[i].AnoPublicacao = novaRevista.AnoPublicacao;
-                    revistas[i].CaixaPertencente = novaRevista.CaixaPertencente;
-
-                    conseguiuEditar = true;
-                }
+            bool conseguiuEditar = repositorioRevista.EditarRevista(idSelecionado, novaRevista);              
+            
 
                 if (!conseguiuEditar)
                 {
@@ -104,8 +93,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
                     return;
                 };
 
-                Notificador.ExibirMensagem("A revista foi editada com sucesso!", ConsoleColor.Green);
-            }
+                Notificador.ExibirMensagem("A revista foi editada com sucesso!", ConsoleColor.Green);            
         }
 
         public void ExcluirRevista()
@@ -121,18 +109,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Digite o ID da revista que deseja excluir: ");
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            bool conseguiuExcluir = false;
-
-            for (int i = 0; i < revistas.Length; i++)
-            {
-                if (revistas[i] == null) continue;
-
-                else if (revistas[i].IdRevista == idSelecionado)
-                {
-                    revistas[i] = null;
-
-                    conseguiuExcluir = true;
-                }
+            bool conseguiuExcluir = repositorioRevista.ExcluirRevista(idSelecionado);
 
                 if (!conseguiuExcluir)
                 {
@@ -140,9 +117,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
                 }
 
                 Notificador.ExibirMensagem("A revista foi devidamente excluída do sistema.", ConsoleColor.Green);
-            }
-
-        }
+        }        
 
         public void VisualizarRevista(bool exibirTitulo)
         {

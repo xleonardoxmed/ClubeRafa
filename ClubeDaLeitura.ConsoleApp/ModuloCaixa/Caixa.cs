@@ -44,7 +44,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
         {
             for (int i = 0; i < Revistas.Length; i++)
             {
-                if (Revistas.Length[i] == null)
+                if (Revistas[i] == null)
                 {
                     Revistas[i] = revista;
                     return;

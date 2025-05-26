@@ -9,7 +9,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 
         public TelaCaixa telaCaixa;
 
-        public TelaCliente(TelaCaixa telaCaixa)
+        public TelaCliente(TelaCaixa telaCaixa) // new, em outra tela, acaba chamando essa linha de código.
         {
             this.telaCaixa = telaCaixa;
         }
