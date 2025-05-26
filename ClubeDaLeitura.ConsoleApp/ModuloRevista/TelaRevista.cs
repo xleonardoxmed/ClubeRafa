@@ -8,7 +8,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
     {
         public TelaCaixa TelaCaixa;
 
+        public RepositorioCaixa repositorioCaixa;
         public RepositorioRevista repositorioRevista;
+
+        public TelaRevista(RepositorioRevista repRevista, RepositorioCaixa repCaixa)
+        {
+            repositorioRevista = repRevista;
+            repositorioCaixa = repCaixa;
+        }
 
         public string ApresentarMenuRevista()
         {
@@ -44,10 +51,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Informe o ano de publicação da revista");
             int anoPublicacao = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Informe a caixa que ela pertence");
-            string caixaPertencente = Console.ReadLine()!.Trim();
-
             VisualizarCaixas();
+
+            Console.Write("Informe o id da caixa");
+            int idCaixa = Convert.ToInt32(Console.ReadLine());
+
+            Caixa caixaPertencente = repositorioCaixa.SelecionarCaixaPorId(idCaixa);
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
             novaRevista.IdRevista = GeradorIds.GerarIdRevista();
@@ -79,21 +88,24 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             Console.Write("Informe o ano de publicação da revista");
             int anoPublicacao = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Informe a caixa que ela pertence");
-            string caixaPertencente = Console.ReadLine()!.Trim();
+            VisualizarCaixas();
+
+            Console.Write("Informe o id da caixa");
+            int idCaixa = Convert.ToInt32(Console.ReadLine());
+
+            Caixa caixaPertencente = repositorioCaixa.SelecionarCaixaPorId(idCaixa);
 
             Revista novaRevista = new Revista(tituloRevista, numeroRevista, anoPublicacao, caixaPertencente);
 
-            bool conseguiuEditar = repositorioRevista.EditarRevista(idSelecionado, novaRevista);              
-            
+            bool conseguiuEditar = repositorioRevista.EditarRevista(idSelecionado, novaRevista);
 
-                if (!conseguiuEditar)
-                {
-                    Notificador.ExibirMensagem("Houve um erro durante a edição das informações...", ConsoleColor.Red);
-                    return;
-                };
+            if (!conseguiuEditar)
+            {
+                Notificador.ExibirMensagem("Houve um erro durante a edição das informações...", ConsoleColor.Red);
+                return;
+            }            
 
-                Notificador.ExibirMensagem("A revista foi editada com sucesso!", ConsoleColor.Green);            
+            Notificador.ExibirMensagem("A revista foi editada com sucesso!", ConsoleColor.Green);
         }
 
         public void ExcluirRevista()
@@ -111,13 +123,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
             bool conseguiuExcluir = repositorioRevista.ExcluirRevista(idSelecionado);
 
-                if (!conseguiuExcluir)
-                {
-                    Notificador.ExibirMensagem("Houve um erro durante a exclusão da revista...", ConsoleColor.Red);
-                }
+            if (!conseguiuExcluir)
+            {
+                Notificador.ExibirMensagem("Houve um erro durante a exclusão da revista...", ConsoleColor.Red);
+            }
 
-                Notificador.ExibirMensagem("A revista foi devidamente excluída do sistema.", ConsoleColor.Green);
-        }        
+            Notificador.ExibirMensagem("A revista foi devidamente excluída do sistema.", ConsoleColor.Green);
+        }
 
         public void VisualizarRevista(bool exibirTitulo)
         {
@@ -129,25 +141,34 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
                 Console.WriteLine();
             }
 
-            Console.WriteLine("{0, - 8} | {1, -15} | {2, -8} | {3, -8} | {4, -8}",
+            Console.WriteLine("{0, -8} | {1, -15} | {2, -8} | {3, -8} | {4, -8}",
                               "ID", "Título", "Número", "Ano Publicação", "Caixa");
+
+            Revista[] revistas = repositorioRevista.SelecionarRevista();
 
             for (int i = 0; i < revistas.Length; i++)
             {
-                Revista revistaSelecionada = revistas[i];
+                Revista r = revistas[i];
 
-                if (revistaSelecionada == null) continue;
+                if (r == null) continue;
 
-                Console.WriteLine("{0, - 8} | {1, -15} | {2, -8} | {3, -8} | {4, -8}",
-revistaSelecionada.IdRevista, revistaSelecionada.TituloRevista, revistaSelecionada.NumeroRevista, revistaSelecionada.AnoPublicacao, revistaSelecionada.CaixaPertencente);
+                Console.WriteLine("{0, -8} | {1, -15} | {2, -8} | {3, -8} | {4, -8}",
+                    r.IdRevista, r.TituloRevista, r.NumeroRevista, r.AnoPublicacao, r.CaixaPertencente.EtiquetaCaixa);
 
             }
-
         }
 
         public void VisualizarCaixas()
         {
+            Caixa[] caixas = repositorioCaixa.SelecionarTodasCaixas();
 
+            foreach (Caixa c in caixas)
+            {
+                if (c != null)
+                    Console.WriteLine(c.IdCaixa + " - " + c.CorCaixa + " - " + c.EtiquetaCaixa);
+            }
+
+            Console.ReadLine();
         }
 
     }

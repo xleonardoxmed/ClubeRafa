@@ -57,7 +57,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             return false;            
         }
 
-        public Caixa[] SelecionarCaixa()
+        public Caixa[] SelecionarTodasCaixas()
         {
             return caixas;
         }
@@ -77,5 +77,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
             return null;
         }
+
+        
     }
 }

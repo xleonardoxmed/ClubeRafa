@@ -11,9 +11,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         public string TituloRevista { get; set; }
         public int NumeroRevista { get; set; }
         public int AnoPublicacao { get; set; }
-        public string CaixaPertencente { get; set; }
+        public Caixa CaixaPertencente { get; set; }
 
-        public Caixa[] Caixas;
+        
 
         public string NumeroSerie
         {
@@ -26,7 +26,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
         }
 
 
-        public Revista(string tituloRevista, int numeroRevista, int anoPublicacao, string caixaPertencente)
+        public Revista(string tituloRevista, int numeroRevista, int anoPublicacao, Caixa caixaPertencente)
         {
             TituloRevista = tituloRevista;
             NumeroRevista = numeroRevista;
@@ -58,53 +58,49 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             if (AnoPublicacao == null)
                 erros += "O campo 'Ano de Punlicação' é obrigatório.\n";
 
-            if (string.IsNullOrEmpty(CaixaPertencente))
-                erros += "O campo 'Caixa Pertencente' é obrigatório.\n";
-
-            if (CaixaPertencente.Length < 3)
-                erros += "Por favor, insira ao menos 3 caracteres.";
+            if (CaixaPertencente == null)
+                erros += "O campo 'Caixa Pertencente' é obrigatório.\n";           
 
             return erros;
-
         }
 
-        public void AdicionarCaixa(Caixa caixa)
-        {
-            for (int i = 0; i < CaixaPertencente.Length; i++)
-            {
-                if (Caixas[i] == null)
-                {
-                    Caixas[i] = caixa;
-                    return;
-                }
-            }
+        //public void AdicionarCaixa(Caixa caixa)
+        //{
+        //    for (int i = 0; i < CaixaPertencente.Length; i++)
+        //    {
+        //        if (Caixas[i] == null)
+        //        {
+        //            Caixas[i] = caixa;
+        //            return;
+        //        }
+        //    }
 
-        }
+        //}
 
-        public void RemoverCaixa(Caixa caixa)
-        {
-            for (int i = 0; i < CaixaPertencente.Length; i++)
-            {
-                if (Caixas[i] == null)
-                    continue;
+        //public void RemoverCaixa(Caixa caixa)
+        //{
+        //    for (int i = 0; i < CaixaPertencente.Length; i++)
+        //    {
+        //        if (Caixas[i] == null)
+        //            continue;
 
-                else if (Caixas[i] == caixa)
-                    Caixas[i] = null;
-            }
-        }
+        //        else if (Caixas[i] == caixa)
+        //            Caixas[i] = null;
+        //    }
+        //}
 
-        public int ObterQuantidadeCaixa()
-        {
-            int contador = 0;
+        //public int ObterQuantidadeCaixa()
+        //{
+        //    int contador = 0;
 
-            for (int i = 0; i < Caixas.Length; i++)
-            {
-                {
-                    if (Caixas[i] != null)
-                        contador++;
-                }                
-            }
-            return contador;
-        }
+        //    for (int i = 0; i < Caixas.Length; i++)
+        //    {
+        //        {
+        //            if (Caixas[i] != null)
+        //                contador++;
+        //        }                
+        //    }
+        //    return contador;
+        //}
     }
 }

@@ -5,19 +5,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCliente
 {
     public class TelaCliente
     {
-        public RepositorioCliente repositorioCliente;
-
-        public TelaCaixa telaCaixa;
-
-        public TelaCliente(TelaCaixa telaCaixa) // new, em outra tela, acaba chamando essa linha de código.
+        public RepositorioCliente repositorioCliente;  
+        
+        public TelaCliente(RepositorioCliente rCliente)
         {
-            this.telaCaixa = telaCaixa;
+            repositorioCliente = rCliente;
         }
 
         public string ApresentarMenuCliente()
         {
             Console.WriteLine("------------------");
-            Console.WriteLine("Gestão de clientes");
+            Console.WriteLine("Gestão de Clientes");
             Console.WriteLine("------------------");
             Console.WriteLine();
             Console.WriteLine("Escolha a operação desejada: ");

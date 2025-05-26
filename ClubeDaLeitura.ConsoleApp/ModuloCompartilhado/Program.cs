@@ -10,13 +10,18 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
     {
         static void Main(string[] args)
         {
+            TelaCliente telaCliente = new TelaCliente(new RepositorioCliente());
+
+            RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+
+            TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
+
+            TelaRevista telaRevista = new TelaRevista(new RepositorioRevista(), repositorioCaixa);
+            
+            TelaEmprestimo telaEmprestimo = new TelaEmprestimo(telaCaixa, telaCliente, telaRevista);
+
             TelaPrincipal telaPrincipal = new TelaPrincipal();
 
-            TelaCaixa telaCaixa = new TelaCaixa();
-            TelaCliente telaCliente = new TelaCliente(telaCaixa);
-
-            TelaRevista telaRevista = new TelaRevista();
-            TelaEmprestimo telaEmprestimo = new TelaEmprestimo(telaCaixa, telaCliente, telaRevista);
 
             while (true)
 
