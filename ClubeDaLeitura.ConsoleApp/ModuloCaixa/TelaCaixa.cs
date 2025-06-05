@@ -39,18 +39,28 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.WriteLine();
 
             Console.Write("Digite o texto da etiqueta da caixa: ");
-            string etiquetaCaixa = Console.ReadLine();
+            string etiquetaCaixa = Console.ReadLine()!;
 
             Console.Write("Selecione a cor da caixa: ");
-            string corCaixa = Console.ReadLine();
+            string corCaixa = Console.ReadLine()!;
 
             Console.Write("Dias em que a caixa será emprestada (padrão: 7 dias): ");
+            string input = Console.ReadLine()?.ToString();
+            string.TryParse(input out int diasEmprestimo);
             int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
-            novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
+            novaCaixa.Id = GeradorIds.GerarIdCaixa();
 
-            repositorioCaixa.CadastrarCaixa(novaCaixa);
+            string erros = novaCaixa.Validar();
+            if (erros.Length > 0)
+            {
+                Notificador.ExibirMensagem("Impossível cadastrar essa caixa!", ConsoleColor.Red);
+                Thread.Sleep(100);
+                return;
+            }
+
+            repositorioCaixa.Cadastrar(novaCaixa);
 
             Notificador.ExibirMensagem("A caixa foi cadastrada com sucesso!", ConsoleColor.Green);
         }
@@ -68,8 +78,6 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.WriteLine("Digite o ID da caixa que deseja editar: ");
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine();
-
             Console.Write("Digite o texto da etiqueta da caixa: ");
             string etiquetaCaixa = Console.ReadLine()!.Trim();
 
@@ -81,8 +89,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
 
-            bool conseguiuEditar = repositorioCaixa.EditarCaixa(idSelecionado, novaCaixa);
-
+            bool conseguiuEditar = repositorioCaixa.Editar(idSelecionado, novaCaixa);
 
             if (!conseguiuEditar)
             {
@@ -91,7 +98,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             }
 
             Notificador.ExibirMensagem("As informações da caixa foram editadas com sucesso!", ConsoleColor.Green);
-        }        
+        }
 
 
         public void ExcluirCaixa()
@@ -132,7 +139,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Console.WriteLine("{0, -8} | {1, -15} | {2, -10} | {3, -10} | {4, -20}",
                                  "ID Caixa", "Etiqueta", "Cor", "Status", "Revistas da Caixa");
 
-            Caixa[] caixaCadastrda = repositorioCaixa.SelecionarTodasCaixas();
+            Caixa[] caixaCadastrda = (Caixa[])repositorioCaixa.SelecionarTodasCaixas();
 
             for (int i = 0; i < caixaCadastrda.Length; i++)
             {
@@ -141,7 +148,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
                 if (caixaSelecionada == null) continue;
 
                 Console.WriteLine("{0, -8} | {1, -15} | {2, -10} | {3, -10} | {4, -20}",
-caixaSelecionada.IdCaixa, caixaSelecionada.EtiquetaCaixa, caixaSelecionada.CorCaixa, caixaSelecionada.DiasEmprestimoCaixa, caixaSelecionada.ObterQuantidadeRevista());
+                caixaSelecionada.Id, caixaSelecionada.EtiquetaCaixa, caixaSelecionada.CorCaixa, caixaSelecionada.DiasEmprestimoCaixa, caixaSelecionada.ObterQuantidadeRevista());
 
             }
 

@@ -11,11 +11,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
         public EntidadeBase[] registros = new EntidadeBase[100];
         public int contadorRegistros = 0;
 
-        public virtual void Inserir(EntidadeBase novoRegistro)
+        public virtual void Cadastrar(EntidadeBase novoRegistro)
         {
             contadorRegistros++;
             novoRegistro.Id = contadorRegistros;
             registros[contadorRegistros] = novoRegistro;
+
         }
 
         public virtual bool Editar(int idSelecionado, EntidadeBase novoRegistro)
@@ -28,9 +29,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
                 {
                     registros[i] = novoRegistro;
                     return true;
-                }
-                else return false;
+                }       
             }
+              return false;
         }
         public EntidadeBase[] SelecionarRegistros()
         {

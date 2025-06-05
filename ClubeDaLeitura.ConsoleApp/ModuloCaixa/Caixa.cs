@@ -1,13 +1,13 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloRevista;
+﻿using ClubeDaLeitura.ConsoleApp.ModuloCompartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 {
-  public  class Caixa
+    public class Caixa : EntidadeBase
     {
-        public int IdCaixa { get; set; }
         public string EtiquetaCaixa { get; set; }
         public string CorCaixa { get; set; }
-        public int DiasEmprestimoCaixa { get; set; }
+        public int? DiasEmprestimoCaixa { get; set; }
 
         public Revista[] Revistas;
 
@@ -21,9 +21,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             Revistas = new Revista[100];
         }
 
-        public string Validar()
+        public override string Validar()
         {
-            string erros = null;
+            string erros = "";
 
             if (string.IsNullOrEmpty(EtiquetaCaixa))
                 erros += "O campo 'Etiqueta' é obrigatório.\n";
@@ -54,15 +54,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 
         public void RemoverRevista(Revista revista)
         {
-            for(int i = 0; i <Revistas.Length; i++)
+            for (int i = 0; i < Revistas.Length; i++)
             {
                 if (Revistas[i] == null)
                     continue;
 
                 else if (Revistas[i] == revista)
                 {
-                    Revistas[i] = null;
-
+                    Revistas[i] = null!;
                     return;
                 }
             }
@@ -82,6 +81,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             return contador;
         }
 
+        public override void Editar(EntidadeBase registroEditado)
+        {
+            Caixa caixaEditada = (Caixa)registroEditado;
+
+            EtiquetaCaixa = caixaEditada.EtiquetaCaixa;
+            CorCaixa = caixaEditada.CorCaixa;
+            DiasEmprestimoCaixa = caixaEditada.DiasEmprestimoCaixa;
+        }
     }
 
 

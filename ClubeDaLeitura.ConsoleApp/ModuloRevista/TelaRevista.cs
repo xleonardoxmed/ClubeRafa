@@ -160,12 +160,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 
         public void VisualizarCaixas()
         {
-            Caixa[] caixas = repositorioCaixa.SelecionarTodasCaixas();
+            Caixa[] caixas = (Caixa[])repositorioCaixa.SelecionarTodasCaixas();
 
             foreach (Caixa c in caixas)
             {
                 if (c != null)
-                    Console.WriteLine(c.IdCaixa + " - " + c.CorCaixa + " - " + c.EtiquetaCaixa);
+                    Console.WriteLine(c.Id + " - " + c.CorCaixa + " - " + c.EtiquetaCaixa);
             }
 
             Console.ReadLine();

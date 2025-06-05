@@ -10,7 +10,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCompartilhado
     {
         public int Id { get; set; }
 
-        public abstract void Validar(EntidadeBase entidade);
+        public abstract string Validar();
+
+        public abstract void Editar(EntidadeBase registroEditado);
 
 
     }

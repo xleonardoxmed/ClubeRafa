@@ -9,46 +9,42 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 {
-    public class RepositorioCaixa
+    public class RepositorioCaixa : RepositorioBase
     {
-        public Caixa[] caixas = new Caixa[100];
-        public int contadorCaixa = 0;
-
-
-        public void CadastrarCaixa(Caixa novaCaixa)
+        public void CadastrarRegistro(EntidadeBase novoRegistro)
         {
-            novaCaixa.IdCaixa = GeradorIds.GerarIdCaixa();
-            caixas[contadorCaixa++] = novaCaixa;
+            novoRegistro.Id = contadorRegistros++;
+            registros[contadorRegistros] = novoRegistro;
         }
 
-        public bool EditarCaixa(int idCaixa, Caixa caixaEditada)
+        public bool Editar(int idCaixa, Caixa caixaEditada)
         {
-            for (int i = 0; i < caixas.Length; i++)
+            bool conseguiuEditar = false;
+
+            for (int i = 0; i < registros.Length; i++)
             {
-                if (caixas[i] == null) continue;
+                if (registros[i] == null) continue;
 
-                else if (caixas[i].IdCaixa == idCaixa)
+                else if (registros[i].Id == idCaixa)
                 {
-                    caixas[i].EtiquetaCaixa = caixaEditada.EtiquetaCaixa;
-                    caixas[i].CorCaixa = caixaEditada.CorCaixa;
-                    caixas[i].DiasEmprestimoCaixa = caixaEditada.DiasEmprestimoCaixa;
+                    registros[i].Editar(caixaEditada);
 
-                    return true;
+                    conseguiuEditar = true;
                 }                
             }
 
-            return false;
+            return conseguiuEditar;
         }
 
         public bool ExcluirCaixa(int idCaixa)
         {
-            for (int i = 0; i < caixas.Length; i++)
+            for (int i = 0; i < registros.Length; i++)
             {
-                if (caixas[i] == null) continue;
+                if (registros[i] == null) continue;
 
-                else if (caixas[i].IdCaixa == idCaixa)
+                else if (registros[i].Id == idCaixa)
                 {
-                    caixas[i] = null;
+                    registros[i] = null;
 
                     return true;
                 }
@@ -57,21 +53,21 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             return false;            
         }
 
-        public Caixa[] SelecionarTodasCaixas()
+        public EntidadeBase[] SelecionarTodasCaixas()
         {
-            return caixas;
+            return registros;
         }
 
         public Caixa SelecionarCaixaPorId(int idCaixaRevistaSelecionada)
         {
-            for(int i = 0; i < caixas.Length; i++)
+            for(int i = 0; i < registros.Length; i++)
             {
-                Caixa caixa = caixas[i];
+                Caixa caixa = (Caixa)registros[i];
 
                 if (caixa == null) 
                     continue;
 
-                else if (caixa.IdCaixa == idCaixaRevistaSelecionada)
+                else if (caixa.Id == idCaixaRevistaSelecionada)
                     return caixa;
             }
 
