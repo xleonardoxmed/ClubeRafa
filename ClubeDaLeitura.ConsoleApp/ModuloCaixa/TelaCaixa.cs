@@ -45,13 +45,28 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             string corCaixa = Console.ReadLine()!;
 
             Console.Write("Dias em que a caixa será emprestada (padrão: 7 dias): ");
-            string input = Console.ReadLine()?.ToString();
-            string.TryParse(input out int diasEmprestimo);
-            int diasEmprestimoCaixa = Convert.ToInt32(Console.ReadLine());
+            string entrada = Console.ReadLine()!;
+            int diasEmprestimoCaixa;
+
+            if (string.IsNullOrWhiteSpace(entrada))
+            {
+                diasEmprestimoCaixa = 7; 
+            }
+            else if (int.TryParse(entrada, out int dias))
+            {
+                diasEmprestimoCaixa = dias;
+            }
+            else
+            {
+                Notificador.ExibirMensagem("Número de dias inválido! Digite um número inteiro", ConsoleColor.Red);
+                Thread.Sleep(100);
+                return; 
+            }
 
             Caixa novaCaixa = new Caixa(etiquetaCaixa, corCaixa, diasEmprestimoCaixa);
             novaCaixa.Id = GeradorIds.GerarIdCaixa();
 
+            
             string erros = novaCaixa.Validar();
             if (erros.Length > 0)
             {

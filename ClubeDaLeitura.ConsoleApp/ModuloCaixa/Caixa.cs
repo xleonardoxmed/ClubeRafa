@@ -67,7 +67,6 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
             }
 
         }
-
         public int ObterQuantidadeRevista()
         {
             int contador = 0;
